@@ -26,3 +26,31 @@ def test_guess_too_low():
     outcome, message = check_guess(40, 50)
     assert outcome == "Too Low"
     assert "HIGHER" in message
+
+
+def test_negative_number_behavior():
+    # Negative numbers should compare numerically as ints
+    outcome, message = check_guess(-5, -10)  # -5 > -10 -> Too High
+    assert outcome == "Too High"
+    assert "LOWER" in message
+
+    outcome, message = check_guess(-15, -10)  # -15 < -10 -> Too Low
+    assert outcome == "Too Low"
+    assert "HIGHER" in message
+
+
+def test_string_secret_and_non_numeric_strings():
+    # Secret as numeric string should be handled as number
+    outcome, message = check_guess(50, "50")
+    assert outcome == "Win"
+    assert "Correct" in message
+
+    # Numeric strings compare numerically when both can be converted to int
+    outcome, message = check_guess("60", "50")
+    assert outcome == "Too High"
+    assert "LOWER" in message
+
+    # Non-numeric strings fall back to string comparison
+    outcome, message = check_guess("b", "a")
+    assert outcome == "Too High"
+    assert "LOWER" in message

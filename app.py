@@ -79,7 +79,9 @@ if "secret" not in st.session_state:
     st.session_state.secret = random.randint(low, high)
 
 if "attempts" not in st.session_state:
-    st.session_state.attempts = 1
+    # FIX: The attempts were not resetting when the player started a new game. 
+    # This was fixed using Copilot Agent mode by resetting the attempts to 0 when the player clicks the new game button.
+    st.session_state.attempts = 0
 
 if "score" not in st.session_state:
     st.session_state.score = 0
@@ -123,7 +125,7 @@ with col3:
 if new_game:
     # reset to active play state
     st.session_state.status = "playing"
-    st.session_state.attempts = 1  # keep consistent with initial default
+    st.session_state.attempts = 0  # keep consistent with initial default
     st.session_state.secret = random.randint(low, high)
     st.session_state.history = []
     st.session_state.score = 0

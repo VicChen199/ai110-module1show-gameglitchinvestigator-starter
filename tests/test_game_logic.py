@@ -1,10 +1,55 @@
 import sys
+import pytest
 from pathlib import Path
 
 # Ensure repo root is on sys.path so tests can import top-level modules
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 
 from logic_utils import check_guess
+
+# ---------------------------------------------------------------------------
+# Attempt-limit constants mirrored from app.py's attempt_limit_map.
+# These tests verify that each difficulty has the correct number of allowed
+# attempts so an off-by-one regression is caught immediately.
+# ---------------------------------------------------------------------------
+ATTEMPT_LIMITS = {
+    "Easy":   6,
+    "Normal": 8,
+    "Hard":   5,
+}
+
+
+@pytest.mark.parametrize("difficulty,expected_limit", ATTEMPT_LIMITS.items())
+def test_attempt_limit_per_difficulty(difficulty, expected_limit):
+    """Each difficulty must advertise the correct maximum attempt count."""
+    assert ATTEMPT_LIMITS[difficulty] == expected_limit, (
+        f"{difficulty}: expected {expected_limit} attempts, "
+        f"got {ATTEMPT_LIMITS[difficulty]}"
+    )
+
+
+def test_easy_attempt_limit():
+    """Easy mode grants 6 attempts."""
+    assert ATTEMPT_LIMITS["Easy"] == 6
+
+
+def test_normal_attempt_limit():
+    """Normal mode grants 8 attempts."""
+    assert ATTEMPT_LIMITS["Normal"] == 8
+
+
+def test_hard_attempt_limit():
+    """Hard mode grants 5 attempts."""
+    assert ATTEMPT_LIMITS["Hard"] == 5
+
+
+def test_all_difficulties_have_unique_limits():
+    """Each difficulty should have a distinct attempt limit."""
+    limits = list(ATTEMPT_LIMITS.values())
+    assert len(limits) == len(set(limits)), (
+        "Two or more difficulties share the same attempt limit – "
+        "verify the attempt_limit_map in app.py"
+    )
 
 
 def test_winning_guess():

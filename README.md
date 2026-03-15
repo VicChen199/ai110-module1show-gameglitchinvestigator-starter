@@ -29,9 +29,17 @@ It wrote the code, ran away, and now the game is unplayable.
 - [ ] Detail which bugs you found.
 - [ ] Explain what fixes you applied.
 
+My game's purpose is a game guesser. The bugs I found were the followng:
+1) When I chose a guess that was smaller than the secret number, I expected the hint to say to go higher. Instead, the game told me the opposite of going lower even thought my guess was smaller than the secret number. 
+2) When I hit the attempt limit and wanted to start a new game, I expected for there to be a new secret number and for my attempts to be reset. However, instead, the game did not let me enter a new guess, stating the same message prior which was "Game over. Start a new game to try again."
+3) When I hit the attempt limit, I was only on attempt number 7. The game did not let me use up all attempts. Instead, it stopped me from entering anymore guesses, saying I used all my attempts.
+4) When changing the difficulty mode, the secret number's potential range did not change to match the range of the mode selected. Rather, secret numbers being generated were in the range of 1 and 100.
+The fixes I applied mainly involved using AI to redo internal game logic, like reseting other variables with the new game button trigger event so that functionality actually led to a new game instead of being unable to start a new game.
+
 ## 📸 Demo
 
 - [ ] [Insert a screenshot of your fixed, winning game here]
+[Screenshot](Screenshot 2026-03-15 at 6.08.53 PM.png)
 
 ## 🚀 Stretch Features
 

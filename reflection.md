@@ -21,6 +21,8 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 - Give one example of an AI suggestion that was correct (including what the AI suggested and how you verified the result).
 - Give one example of an AI suggestion that was incorrect or misleading (including what the AI suggested and how you verified the result).
 
+I used Copilot for this project. One suggestion AI made correctly was changing the logic of the comparison between the hint and the secret. It correctly identified when the guess is lesser than the secret, it makes the hint say to go higher, and vice versa. I verified this result through test cases via. pytest. However, for this fix, there was a bug with pytest and importing top level modules to the repo. This was fixed by AI by adding the repo to sys.path. For the second fix, I used a similar methodology. 
+
 ---
 
 ## 3. Debugging and testing your fixes
@@ -30,6 +32,9 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
   and what it showed you about your code.
 - Did AI help you design or understand any tests? How?
 
+I decided a bug was really fixed when it passed the test cases. I ran a test case utilizing negative numbers and the code was able to handle it accuratelt. The AI designed the test for me. 
+For the second fix I made, I didn't use pytest, but rather tested manually since this wasn't testing game logic, but rather functionality of buttons. 
+
 ---
 
 ## 4. What did you learn about Streamlit and state?
@@ -37,6 +42,10 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 - In your own words, explain why the secret number kept changing in the original app.
 - How would you explain Streamlit "reruns" and session state to a friend who has never used Streamlit?
 - What change did you make that finally gave the game a stable secret number?
+
+The secret number keeps on changing in the original because of the new game button. 
+Anytime you press a button or interact with the game, the python script restarts, and the necessary variables get passed over between each session state. The rerun is a new session state. 
+I rewrote the new game button logic so that a new secret number would be generated with the new game as well as other logic. 
 
 ---
 
@@ -46,3 +55,7 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
   - This could be a testing habit, a prompting strategy, or a way you used Git.
 - What is one thing you would do differently next time you work with AI on a coding task?
 - In one or two sentences, describe how this project changed the way you think about AI generated code.
+
+One habit and strategy that I could reuse in future work would be to use copilot to generate commit messages since it is able to more eloquently put into words what I would like to describe in my messages. 
+One thing I would do differently is being more descriptive with my refractor prompts since copilot took a while with that step when it would have been a relatively simple task for me to do myself.
+This project changed the way I see how powerful AI can be. It was able to do so much more and actually teach more so much more than I initially realized that it can do, and I will rely on AI more often in my coding in the future to be more efficient.

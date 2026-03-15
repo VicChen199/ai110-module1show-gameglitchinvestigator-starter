@@ -39,7 +39,7 @@ The fixes I applied mainly involved using AI to redo internal game logic, like r
 ## 📸 Demo
 
 - [ ] [Insert a screenshot of your fixed, winning game here]
-[Screenshot](Screenshot 2026-03-15 at 6.08.53 PM.png)
+[Screenshot](https://github.com/VicChen199/ai110-module1show-gameglitchinvestigator-starter/blob/main/Screenshot%202026-03-15%20at%206.08.53%E2%80%AFPM.png)
 
 ## 🚀 Stretch Features
 
